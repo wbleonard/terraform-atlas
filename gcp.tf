@@ -2,11 +2,12 @@
 variable "api_public_key" { default="" }
 variable "api_private_key" { default="" }
 variable "org_id" { default="" }
-variable "project_name" { default="" }
-variable "database_username" { default = "" }
-variable "database_user_password" { default = "" }
-variable "whitelist_ip" { default = "" }
-variable "whitelist_ip_desc" { default = "" }
+
+variable "project_name" { default="Terraform" }
+variable "database_username" { default = "terraform" }
+variable "database_user_password" { default = "terraform" }
+variable "whitelist_ip" { default = "0.0.0.0" }
+variable "whitelist_ip_desc" { default = "Added by Terraform" }
 
 #
 # Configure the MongoDB Atlas Provider
