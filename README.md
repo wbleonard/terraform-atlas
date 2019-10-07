@@ -11,11 +11,11 @@ Add a `terraform.tfvars` file with the following values. The [Programmatic API K
 # Required 
 mongodb_atlas_api_public_key  = "<API Public Key>"
 mongodb_atlas_api_private_key = "<API Priviate Key>"
-org_id                        = "<Atlas Org Id">
+org_id                        = "<Atlas Org Id>"
 
 # Optional
 project_name           = "<Desired Project Name>"
-cluster_name	       = <"Cluster name">
+cluster_name	       = "<Cluster name>"
 database_username      = "<Database User Name>"
 database_user_password = "<Database User Password>"
 whitelist_ip           = "<Whitelist IP>"
