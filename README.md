@@ -15,6 +15,7 @@ org_id                        = "<Atlas Org Id">
 
 # Optional
 project_name           = "<Desired Project Name>"
+cluster_name	       = <"Cluster name">
 database_username      = "<Database User Name>"
 database_user_password = "<Database User Password>"
 whitelist_ip           = "<Whitelist IP>"
