@@ -4,7 +4,7 @@ variable "api_private_key" { default="" }
 variable "org_id" { default="" }
 
 variable "project_name" { default="Terraform" }
-variable "cluster_name" { default="test" }
+variable "cluster_name" { default="TerraformManagedCluster" }
 variable "database_username" { default = "terraform" }
 variable "database_user_password" { default = "terraform" }
 variable "whitelist_ip" { default = "0.0.0.0" }
@@ -29,13 +29,13 @@ resource "mongodbatlas_project" "my_project" {
 #
 # Create a Cluster
 #
-resource "mongodbatlas_cluster" "test" {
+resource "mongodbatlas_cluster" "my_cluster" {
   project_id   = mongodbatlas_project.my_project.id
   name         = var.cluster_name
   num_shards   = 1
 
   replication_factor           = 3
-  backup_enabled               = true
+  provider_backup_enabled      = true
   auto_scaling_disk_gb_enabled = true
   mongo_db_major_version       = "4.0"
 
@@ -49,11 +49,11 @@ resource "mongodbatlas_cluster" "test" {
 #
 # Create a Database User
 #
-resource "mongodbatlas_database_user" "test" {
-  username 		= var.database_username
-  password 	 	= var.database_user_password
+resource "mongodbatlas_database_user" "my_database_user" {
+  username 	          	= var.database_username
+  password 	           	= var.database_user_password
   project_id            = mongodbatlas_project.my_project.id
-  database_name	 	= "admin"
+  auth_database_name	 	= "admin"
 
   roles {
     role_name     	= "readWriteAnyDatabase"
@@ -65,10 +65,8 @@ resource "mongodbatlas_database_user" "test" {
 # Create an IP Whitelist
 #
 resource "mongodbatlas_project_ip_whitelist" "test" {
-  project_id            = mongodbatlas_project.my_project.id  
-  whitelist {  
-    ip_address 		= var.whitelist_ip
-    comment    		= var.whitelist_ip_desc
-  }
+  project_id    = mongodbatlas_project.my_project.id  
+  ip_address 		= var.whitelist_ip
+  comment    		= var.whitelist_ip_desc
 }
 

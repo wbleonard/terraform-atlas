@@ -10,7 +10,7 @@ Add a `terraform.tfvars` file with the following values. The [Programmatic API K
 ```
 # Required 
 mongodb_atlas_api_public_key  = "<API Public Key>"
-mongodb_atlas_api_private_key = "<API Priviate Key>"
+mongodb_atlas_api_private_key = "<API Privite Key>"
 org_id                        = "<Atlas Org Id>"
 
 # Optional
@@ -24,15 +24,27 @@ whitelist_ip_desc      = "<Whitelist IP Description>"
 
 Initialize the MongoDB Atlas Provider:
 ```
-$ terraform init
+✗ terraform init
+```
+
+View the terraform and provider version
+```
+✗ terraform providers -version
+Terraform v0.13.2
++ provider registry.terraform.io/terraform-providers/mongodbatlas v0.6.3
 ```
 
 Apply your changes:
 ```
-$ terraform apply
+✗ terraform apply
 ```
 
 View the current state:
 ```
-$ terraform show
+✗ terraform show
+```
+
+Destroy the state:
+```
+✗ terraform destroy
 ```
