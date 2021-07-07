@@ -7,12 +7,20 @@ variable "project_name" { default="Terraform" }
 variable "cluster_name" { default="TerraformManagedCluster" }
 variable "database_username" { default = "terraform" }
 variable "database_user_password" { default = "terraform" }
-variable "whitelist_ip" { default = "0.0.0.0" }
-variable "whitelist_ip_desc" { default = "Added by Terraform" }
+variable "access_list_ip" { default = "0.0.0.0" }
+variable "access_list_ip_desc" { default = "Added by Terraform" }
 
 #
 # Configure the MongoDB Atlas Provider
 #
+terraform {
+  required_providers {
+    mongodbatlas = {
+      source = "mongodb/mongodbatlas"
+      version = "0.9.1"
+    }
+  }
+}
 provider "mongodbatlas" {
   public_key = var.api_public_key
   private_key  = var.api_private_key
@@ -62,11 +70,11 @@ resource "mongodbatlas_database_user" "my_database_user" {
 }
 
 #
-# Create an IP Whitelist
+# Create an IP Access List
 #
-resource "mongodbatlas_project_ip_whitelist" "test" {
+resource "mongodbatlas_project_ip_access_list" "test" {
   project_id    = mongodbatlas_project.my_project.id  
-  ip_address 		= var.whitelist_ip
-  comment    		= var.whitelist_ip_desc
+  ip_address 		= var.access_list_ip
+  comment    		= var.access_list_ip_desc
 }
 
